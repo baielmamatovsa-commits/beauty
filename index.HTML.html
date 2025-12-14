@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Парикмахерская "Кросата" | Балашиха</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c9a96e;
+            --primary-dark: #a88755;
+            --dark: #222222;
+            --light: #f8f5f0;
+            --gray: #777777;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--dark);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 180px 0 120px;
+            margin-top: 70px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Services Section */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-img {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.05);
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .service-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* График работы - новая секция */
+        .hours-section {
+            background-color: #f5f1e9;
+        }
+        
+        .hours-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .hours-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            height: 450px;
+        }
+        
+        .hours-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hours-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .hours-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .hours-table {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            margin-top: 30px;
+        }
+        
+        .hours-table h4 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            font-weight: 500;
+        }
+        
+        .time {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .hours-note {
+            text-align: center;
+            margin-top: 25px;
+            padding: 15px;
+            background-color: rgba(201, 169, 110, 0.1);
+            border-radius: 8px;
+            font-style: italic;
+            color: var(--dark);
+        }
+        
+        /* Location Section */
+        .location {
+            background-color: white;
+        }
+        
+        .location-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .location-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .location-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .location-info i {
+            color: var(--primary);
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .map-placeholder {
+            background-color: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .contact-info {
+            padding: 20px 0;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+        
+        .contact-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-heading {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hours-container,
+            .location-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hours-image {
+                height: 350px;
+                order: -1;
+            }
+            
+            .map-placeholder {
+                height: 350px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                background-color: white;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 150px 0 100px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 70px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+            }
+            
+            .hours-table {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Кроса<span>та</span></a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#hours">График</a></li>
+                <li><a href="#location">Локация</a></li>
+                <li><a href="#contact">Запись</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Парикмахерская "Кросата"</h1>
+            <p>Профессиональные парикмахерские услуги в Балашихе. Стильные стрижки, окрашивание, уход за волосами и создание идеального образа для каждого клиента.</p>
+            <a href="#contact" class="btn">Записаться онлайн</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наши услуги</h2>
+                <p>Широкий спектр парикмахерских услуг для мужчин, женщин и детей</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Женские стрижки">
+                    </div>
+                    <div class="service-content">
+                        <h3>Женские стрижки</h3>
+                        <p>Современные и классические женские стрижки, каскад, лесенка, каре и многое другое. Индивидуальный подход к каждому клиенту.</p>
+                        <div class="price">от 1200 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1081&q=80" alt="Окрашивание волос">
+                    </div>
+                    <div class="service-content">
+                        <h3>Окрашивание волос</h3>
+                        <p>Балаяж, омбре, мелирование, тонирование, креативное окрашивание. Используем только профессиональные краски премиум-класса.</p>
+                        <div class="price">от 2500 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Уход за волосами">
+                    </div>
+                    <div class="service-content">
+                        <h3>Уход за волосами</h3>
+                        <p>Профессиональный уход, восстановление, ламинирование, кератиновое выпрямление. Вернем здоровый вид даже сильно поврежденным волосам.</p>
+                        <div class="price">от 1800 ₽</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- График работы -->
+    <section class="section hours-section" id="hours">
+        <div class="container">
+            <div class="section-title">
+                <h2>График работы</h2>
+                <p>Мы работаем для вас каждый день без выходных</p>
+            </div>
+            
+            <div class="hours-container">
+                <div class="hours-info">
+                    <h3>Удобное время для посещения</h3>
+                    <p>Мы понимаем, как важно для наших клиентов иметь возможность посетить парикмахерскую в удобное время. Поэтому мы работаем с раннего утра до позднего вечера каждый день!</p>
+                    <p>Наши мастера готовы создать для вас идеальный образ в любое время с 9:00 до 21:00. Запишитесь заранее, чтобы выбрать наиболее удобное время визита.</p>
+                    
+                    <div class="hours-table">
+                        <h4>Часы работы</h4>
+                        <div class="hours-row">
+                            <span class="day">Понедельник</span>
+                            <span class="time">09:00 - 21:00</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="day">Вторник</span>
+                            <span class="time">09:00 - 21:00</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="day">Среда</span>
+                            <span class="time">09:00 - 21:00</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="day">Четверг</span>
+                            <span class="time">09:00 - 21:00</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="day">Пятница</span>
+                            <span class="time">09:00 - 21:00</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="day">Суббота</span>
+                            <span class="time">09:00 - 21:00</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="day">Воскресенье</span>
+                            <span class="time">09:00 - 21:00</span>
+                        </div>
+                        
+                        <div class="hours-note">
+                            <i class="fas fa-clock"></i> Последняя запись принимается за час до закрытия
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hours-image">
+                    <img src="https://images.unsplash.com/photo-1560869713-9c8c9b33a5b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Салон красоты">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="section location" id="location">
+        <div class="container">
+            <div class="section-title">
+                <h2>Мы находимся</h2>
+                <p>Приходите к нам в гости в удобное для вас время</p>
+            </div>
+            
+            <div class="location-container">
+                <div class="location-info">
+                    <h3>Парикмахерская "Кросата"</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Адрес:</strong> г. Балашиха, Жилгородок 9а</p>
+                    <p><i class="fas fa-clock"></i> <strong>Режим работы:</strong> Ежедневно с 9:00 до 21:00</p>
+                    <p><i class="fas fa-phone"></i> <strong>Телефон:</strong> +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> krosata.balashiha@example.com</p>
+                    <p>Мы находимся в жилом районе Жилгородок с удобной парковкой. Рядом остановка общественного транспорта. Уютная атмосфера, профессиональные мастера и приятные цены ждут вас!</p>
+                    <a href="#contact" class="btn" style="margin-top: 20px;">Записаться на прием</a>
+                </div>
+                
+                <div class="map-placeholder">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2242.698237968318!2d37.92937397668785!3d55.80142587307433!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414acc85c6ce4d37%3A0x3fa4c4f4c3e7c3f2!2z0JPQuNC70L7RgNGD0LzQvtC6IDlhLCDQkdCw0LvQsNGB0YHQutCw0Y8g0JHQuNC30L3QtdGBLCAxNDM5MDY!5e0!3m2!1sru!2sru!4v1687854321234!5m2!1sru!2sru" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Запись на прием</h2>
+                <p>Заполните форму и мы свяжемся с вами для подтверждения записи</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form id="appointmentForm">
+                        <input type="text" id="name" placeholder="Ваше имя" required>
+                        <input type="tel" id="phone" placeholder="Номер телефона" required>
+                        <input type="email" id="email" placeholder="Email (необязательно)">
+                        <select id="service" style="width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; font-family: 'Roboto', sans-serif; font-size: 1rem;">
+                            <option value="">Выберите услугу</option>
+                            <option value="haircut">Стрижка</option>
+                            <option value="coloring">Окрашивание</option>
+                            <option value="care">Уход за волосами</option>
+                            <option value="styling">Укладка</option>
+                            <option value="other">Другое</option>
+                        </select>
+                        <input type="datetime-local" id="datetime" style="width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; font-family: 'Roboto', sans-serif; font-size: 1rem;">
+                        <textarea id="message" placeholder="Дополнительные пожелания"></textarea>
+                        <button type="submit" class="btn">Отправить заявку</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Контакты</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Адрес</h4>
+                            <p>г. Балашиха, Жилгородок 9а</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Телефон</h4>
+                            <p>+7 (495) 123-45-67</p>
+                            <p>+7 (926) 123-45-67 (WhatsApp)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4>Часы работы</h4>
+                            <p>Ежедневно с 9:00 до 21:00</p>
+                            <p>Без выходных и перерывов</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">Кросата</a>
+                    <p>Профессиональная парикмахерская в Балашихе. Мы создаем стильные образы и заботимся о здоровье ваших волос. Индивидуальный подход к каждому клиенту.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-heading">Услуги</h4>
+                    <ul>
+                        <li><a href="#services">Женские стрижки</a></li>
+                        <li><a href="#services">Мужские стрижки</a></li>
+                        <li><a href="#services">Окрашивание</a></li>
+                        <li><a href="#services">Уход за волосами</a></li>
+                        <li><a href="#services">Укладки</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-heading">График работы</h4>
+                    <ul>
+                        <li><i class="fas fa-calendar-alt"></i> Пн-Вс: 9:00-21:00</li>
+                        <li><i class="fas fa-clock"></i> Без выходных</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Балашиха, Жилгородок 9а</li>
+                        <li><i class="fas fa-phone"></i> +7 (495) 123-45-67</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Парикмахерская "Кросата". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+        
+        // Form submission
+        const appointmentForm = document.getElementById('appointmentForm');
+        
+        appointmentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const datetime = document.getElementById('datetime').value;
+            
+            // Simple validation
+            if (!name || !phone || !service) {
+                alert('Пожалуйста, заполните все обязательные поля: имя, телефон и выберите услугу.');
+                return;
+            }
+            
+            // Format date for display
+            let dateTimeText = '';
+            if (datetime) {
+                const dateObj = new Date(datetime);
+                const formattedDate = dateObj.toLocaleDateString('ru-RU', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                dateTimeText = ` на ${formattedDate}`;
+            }
+            
+            // In a real application, you would send this data to a server
+            // For this example, we'll just show a success message
+            alert(`Спасибо, ${name}! Ваша заявка на запись${dateTimeText} принята. Мы свяжемся с вами по номеру ${phone} в ближайшее время для подтверждения.`);
+            
+            // Reset form
+            appointmentForm.reset();
+        });
+        
+        // Set min date/time for appointment (tomorrow)
+        const datetimeInput = document.getElementById('datetime');
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(9, 0, 0, 0);
+        
+        const minDate = tomorrow.toISOString().slice(0, 16);
+        datetimeInput.min = minDate;
+        
+        // Set max date/time (30 days from now)
+        const maxDate = new Date();
+        maxDate.setDate(maxDate.getDate() + 30);
+        maxDate.setHours(20, 0, 0, 0);
+        
+        const maxDateStr = maxDate.toISOString().slice(0, 16);
+        datetimeInput.max = maxDateStr;
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
